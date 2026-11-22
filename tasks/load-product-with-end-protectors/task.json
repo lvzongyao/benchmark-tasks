@@ -1,0 +1,19 @@
+{
+  "title": "Load a product with loose end protectors",
+  "category": "Other",
+  "keywords": [
+    "bimanual",
+    "protective packaging",
+    "support transfer",
+    "packing"
+  ],
+  "instruction": "Put both end protectors on the product and load the protected product into the tray.",
+  "context": "Two loose end protectors must support the product during transfer. The tray walls retain the protectors when both hands let go.",
+  "setup": "On the YAM station, the dummy product measures 150 x 70 x 40 mm with the long axis along world y. It rests on a 15 mm tall center block. Two separate cup-shaped protectors measure 82 x 25 mm across the floor, with 4 mm support shelves, raised exterior handles, and openings pointing at the product. The receiving tray has an interior 162 x 86 mm footprint and 22 mm walls above the floor. Suggested prototypes use PETG. All four pieces can move independently.",
+  "scoring": "0.25 per protector that overlaps its designated end by at least 15 mm and supports the product from below. 0.75 when both protectors are fitted, all three pieces are contained, the product yaw is within 5 degrees of the tray, both protectors sit on the tray floor and their outer edges are within 3 mm of the corresponding end walls. 1.0 after both jaws clear all pieces by 10 mm and the loaded arrangement stays stable for 20 control steps.",
+  "run_limit": "2,400 steps (120 simulated seconds at 20 Hz)",
+  "reset_notes": "Lift the parts out of the tray. Set the product on its center rest, put the left and right protectors on their matching marks with the openings inward, and square the tray with the table.",
+  "fidelity": "The loose protectors and tray use rigid collision surfaces with open cavities and real support shelves. There are no joints or automatic attachments between pieces. Materials and friction are estimates for a printable surrogate. Physical fit and impact protection are unverified.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-56S9BC"
+}
