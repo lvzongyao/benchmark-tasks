@@ -40,6 +40,21 @@ class ScoreTests(unittest.TestCase):
 
 
 class MechanicsTests(unittest.TestCase):
+    def test_right_arm_stays_at_ready_until_left_grasps(self):
+        from task import demo
+        from yam_arena.constants import READY
+        from yam_arena.demo import ArmPlan, FINGER_CLOSED
+        from yam_arena.station import BASES
+
+        waypoints = demo()
+        left, right = (ArmPlan(waypoints[arm], BASES[arm]) for arm in ("left", "right"))
+        grasp = next(index for index, point in enumerate(left.waypoints) if point.finger == FINGER_CLOSED)
+        grasp_time = sum(point.duration for point in left.waypoints[:grasp + 1])
+        for step in range(round(grasp_time * 20) + 1):
+            targets, _ = right.action7(step / 20)
+            np.testing.assert_array_equal(targets, np.r_[READY, 1.])
+        self.assertFalse(np.array_equal(right.action7(grasp_time + .5)[0], np.r_[READY, 1.]))
+
     def test_nominal_slide_clears_both_lips_before_lift(self):
         from task import INNER, OUTER, RELEASE, ROOFS, TONGUES
 

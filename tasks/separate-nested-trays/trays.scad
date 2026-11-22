@@ -9,7 +9,8 @@ module outer() {
         translate([108.5, 0, 24]) cube([3, 144, 42], center=true);
         translate([0, -67.5, 41.5]) cube([4, 9, 5], center=true);
         translate([0, 67.5, 41.5]) cube([4, 9, 5], center=true);
-        translate([0, -82, 49.5]) cube([24, 16, 47], center=true);
+        translate([-60, -81.5, 49.5]) cube([24, 15, 47], center=true);
+        translate([-60, -126, 63.5]) cube([24, 74, 19], center=true);
     }
 }
 module inner() {

@@ -26,8 +26,10 @@ PAD_Y = .211
 PAD_X = .265
 PAD_H = .003
 LEFT_PAD_SIZE = np.array([.254, .203])
-RIGHT_PAD_SIZE = np.array([.284, .233])
-RIGHT_PAD_Y = -.226
+RIGHT_PAD_SIZE = np.array([.284, .273])
+RIGHT_PAD_Y = -.246
+OUTER_GRIP_X = -.060
+OUTER_GRIP_Y = -.150
 RELEASE = .008
 BLUE = (.10, .36, .82)
 ORANGE = (.99, .45, .09)
@@ -53,7 +55,8 @@ def shell(length, width, height, color):
 OUTER_BOXES = [*shell(220, 150, 45, BLUE),
                box_mm(-2, 2, -72, -63, 39, 44, WITNESS),
                box_mm(-2, 2, 63, 72, 39, 44, WITNESS),
-               box_mm(-12, 12, -90, -74, 26, 73, BLUE)]
+               box_mm(-72, -48, -89, -74, 26, 73, BLUE),
+               box_mm(-72, -48, -163, -89, 54, 73, BLUE)]
 INNER_BOXES = [*shell(180, 120, 35, ORANGE),
                box_mm(-2, 2, -70, -59, 26, 30, ORANGE),
                box_mm(-2, 2, 59, 70, 26, 30, ORANGE),
@@ -81,13 +84,29 @@ DWELL = Dwell()
 STEP = 0
 DIAGNOSTICS = {}
 ORIGIN = None
+ARM_CONTACTS = None
 
 
 @on_reset
 def reset(environment=None):
-    global STEP, DWELL, ORIGIN
+    global STEP, DWELL, ORIGIN, ARM_CONTACTS
     STEP, DWELL, ORIGIN = 0, Dwell(), None
     DIAGNOSTICS.clear()
+    path = os.environ.get("TRAY_ARM_CONTACTS")
+    if path:
+        from arm_contacts import ArmContacts
+        from isaaclab_physx.physics.physx_manager import PhysxManager
+
+        ARM_CONTACTS = ArmContacts(path)
+        if not getattr(PhysxManager.step, "_tray_contacts", False):
+            native_step = PhysxManager.step.__func__
+
+            def step(cls):
+                native_step(cls)
+                ARM_CONTACTS.poll(cls.get_physics_dt())
+
+            step._tray_contacts = True
+            PhysxManager.step = classmethod(step)
 
 
 @on_step
@@ -166,6 +185,8 @@ def score(objects):
     flags = {k: bool(v) for k, v in vars(inputs).items() if k != "poses"}
     DIAGNOSTICS.update(details, **flags, step=STEP, dwell=len(DWELL.history),
                        invalid_latched=bool(DWELL.invalid), score=result)
+    if ARM_CONTACTS is not None:
+        DIAGNOSTICS.update(physics_substeps=ARM_CONTACTS.substeps, arm_contacts=ARM_CONTACTS.contacts)
     target = os.environ.get("TRAY_DIAGNOSTICS")
     if target:
         with open(target, "a") as log:
@@ -179,6 +200,8 @@ def success(objects):
 
 def demo():
     """Cartesian waypoints executed through the stock scripted policy and joint targets."""
+    from demo_pose import ready_pose
+
     mode = os.environ.get("TRAY_DEMO", "full")
     # Pinch the flat sides of each raised grasp land with mirrored wrist rolls.
     left_yaw, right_yaw = -math.pi / 2, math.pi / 2
@@ -186,17 +209,26 @@ def demo():
     hover = TOP + .176
     left_grasp, right_grasp = TOP + .063, TOP + .064
     ix, iy = CENTER_X, .020
-    ox, oy = CENTER_X, -.082
+    ox, oy = CENTER_X + OUTER_GRIP_X, OUTER_GRIP_Y
     left, right = [], []
 
-    def both(duration, lpos, lgrip, rpos, rgrip, label, left_turn=0., right_turn=0.):
-        left.append(Waypoint(duration, lpos, lgrip, label, left_yaw + left_turn))
-        right.append(Waypoint(duration, rpos, rgrip, label, right_yaw + right_turn))
+    def both(duration, lpos, lgrip, rpos, rgrip, label):
+        left.append(Waypoint(duration, lpos, lgrip, label, left_yaw))
+        right.append(Waypoint(duration, rpos, rgrip, label, right_yaw))
 
     upper, lower = (ix, iy, left_grasp), (ox, oy, right_grasp)
-    both(2.0, (ix, iy, hover), opened, (ox, oy, hover), opened, "approach")
-    both(2.0, upper, opened, lower, opened, "descend")
-    both(1.0, upper, held, lower, held, "grasp")
+    parked, parked_yaw = ready_pose("right")
+    for duration, position, grip, label in (
+        (2., (ix, iy, hover), opened, "left approach"),
+        (2., upper, opened, "left descent"),
+        (1., upper, held, "left grasp"),
+    ):
+        left.append(Waypoint(duration, position, grip, label, left_yaw))
+        right.append(Waypoint(duration, parked, opened, "hold right at ready", parked_yaw))
+    right_hover = (ox, oy, TOP + .105)
+    both(2.0, upper, held, right_hover, opened, "right approach")
+    both(1.5, upper, held, lower, opened, "right descent")
+    both(1.0, upper, held, lower, held, "right counterhold")
     if mode == "straight":
         axial_pull = (ix, iy, left_grasp + .014)
         both(2.0, axial_pull, held, lower, held, "short straight pull")
@@ -210,28 +242,26 @@ def demo():
     counterhold = (ox - .012, oy, right_grasp)
     slide_z = left_grasp + .003
     both(.6, (ix, iy, slide_z), held, lower, held, "unload base contact within the lips")
-    correction = 0.
-    both(2.0, (sx, iy, slide_z), held, counterhold, held, "slide and square the inner tray", correction)
+    both(2.0, (sx, iy, slide_z), held, counterhold, held, "slide and square the inner tray")
     if mode == "slide":
-        both(.8, (sx, iy, left_grasp), opened, counterhold, opened, "release after slide", correction)
+        both(.8, (sx, iy, left_grasp), opened, counterhold, opened, "release after slide")
         both(2., (sx, iy, hover), opened, (counterhold[0], oy, hover), opened, "retreat")
         return {"left": left, "right": right}
-    both(2.0, (sx, iy, hover), held, counterhold, held, "lift inner tray", correction)
-    lp, rp = (PAD_X, PAD_Y + iy + .033), (PAD_X, -PAD_Y + oy)
+    both(2.0, (sx, iy, hover), held, counterhold, held, "lift inner tray")
+    lp = (PAD_X, PAD_Y + iy)
+    # Center the lower tray's full outline, including the outward grip, on the mat.
+    outer_mid_y = (HULLS[0][:, 1].min() + HULLS[0][:, 1].max()) / 2
+    rp = (PAD_X + OUTER_GRIP_X, RIGHT_PAD_Y - outer_mid_y + oy)
     both(2.0, (*lp, hover), held, counterhold, held, "carry inner tray")
     both(2.0, (*lp, left_grasp + .003), held, counterhold, held, "lower inner tray")
     both(.8, (*lp, left_grasp + .003), opened, counterhold, held, "release inner tray")
-    lower_pick = (.201, -.067, right_grasp)
-    lower_turn = math.radians(-10)
-    both(.6, (*lp, left_grasp + .003), opened, counterhold, opened, "open right jaws")
-    both(1.4, (*lp, hover), opened, (*counterhold[:2], hover), opened, "clear the trays")
+    both(1.4, (*lp, hover), opened, counterhold, held, "clear the left tray")
     if mode == "one_pad":
+        both(.8, (*lp, hover), opened, counterhold, opened, "release right counterhold")
+        both(1.4, (*lp, hover), opened, (*counterhold[:2], hover), opened, "clear the right tray")
         return {"left": left, "right": right}
-    both(1.0, (*lp, hover), opened, (*lower_pick[:2], hover), opened, "align right grasp to outer tray", right_turn=lower_turn)
-    both(1.5, (*lp, hover), opened, lower_pick, opened, "descend over outer grip", right_turn=lower_turn)
-    both(1.0, (*lp, hover), opened, lower_pick, held, "regrasp outer tray", right_turn=lower_turn)
-    both(2.0, (*lp, hover), opened, (*lower_pick[:2], hover), held, "lift outer tray", right_turn=lower_turn)
-    both(2.0, (*lp, hover), opened, (*rp, hover), held, "carry outer tray")
+    both(2.0, (*lp, hover), opened, (*counterhold[:2], right_hover[2]), held, "lift outer tray")
+    both(2.0, (*lp, hover), opened, (*rp, right_hover[2]), held, "carry outer tray")
     both(2.0, (*lp, hover), opened, (*rp, right_grasp + PAD_H), held, "lower outer tray")
     both(.8, (*lp, hover), opened, (*rp, right_grasp + PAD_H), opened, "release outer tray")
     both(2.0, (*lp, hover), opened, (*rp, hover), opened, "retreat")
