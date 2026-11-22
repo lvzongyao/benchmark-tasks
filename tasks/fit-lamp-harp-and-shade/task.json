@@ -1,0 +1,20 @@
+{
+  "title": "Fit a table lamp harp and shade",
+  "category": "Societal relatability",
+  "keywords": [
+    "household lamp",
+    "spring-wire harp",
+    "saddle capture",
+    "sliding sleeves",
+    "spider shade"
+  ],
+  "instruction": "Fit the harp into the lamp, lower both retaining sleeves, and seat the shade on the harp.",
+  "context": "Paxton Hardware’s 8-inch removable lamp harp, SKU 1231A, uses the same saddle and sleeve mechanism documented in RH’s Lattice Table Lamp instructions. The legs squeeze into the saddle notches. The sleeves keep the legs captured while the harp carries the shade. The task ends with the shade resting on the harp, ready for the finial.",
+  "setup": "A short unplugged table lamp with an empty bulb socket and a 142 mm-diameter base stands on the YAM tabletop. The matching 203.2 mm harp stands on a separate storage rest with both sleeves lowered. The spider shade stands separately on the table. The loose brass finial lies on the bench for the next assembly step.",
+  "scoring": "0.5 when both harp feet are captured under their saddle shoulders and each sliding sleeve covers at least 2 mm of the blocking band, with the arms clear of the saddle. 1.0 when the shade washer stays within 2.1 mm laterally and 1.4 mm vertically of its seat, its tilt is under 3.62°, and both grippers remain clear of the stable assembly for one simulated second.",
+  "run_limit": "2,400 steps (120 simulated seconds at 20 Hz)",
+  "reset_notes": "Set the lamp base square on the tabletop. Put the shade upright on its separate starting spot. Raise both sleeves, compress the legs and withdraw the harp. Park it upright on the separate storage rest with both sleeves lowered. Leave the finial loose at its separate starting spot.",
+  "fidelity": "Paxton publishes the overall harp height and thread designation. The harp cross section, saddle and sleeve detail, spring rate, and mass properties are estimated. The host lamp and compatible shade are modeled from reference material. Passive spring hinges represent the wire, and the two sleeves are separate bodies that slide on the legs through bore contact. Native contact between the spider washer and the top of the harp supports the shade. The operation ends before finial attachment.",
+  "scores": "Dream-1 run: 0.0 in 2,400 actions (seed 0). Scripted demo: 1.0 in 841 actions (seed 0).",
+  "media": "M-5Z9SQN"
+}
