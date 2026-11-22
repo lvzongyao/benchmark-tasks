@@ -340,12 +340,12 @@
       "name": "right_pad",
       "center_m": [
         0.265,
-        -0.211,
+        -0.226,
         0.749
       ],
       "size_m": [
-        0.254,
-        0.203,
+        0.284,
+        0.233,
         0.003
       ],
       "material": "3 mm staging mat, secured flat"

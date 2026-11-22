@@ -25,7 +25,9 @@ CENTER_X = .265
 PAD_Y = .211
 PAD_X = .265
 PAD_H = .003
-PAD_SIZE = np.array([.254, .203])
+LEFT_PAD_SIZE = np.array([.254, .203])
+RIGHT_PAD_SIZE = np.array([.284, .233])
+RIGHT_PAD_Y = -.226
 RELEASE = .008
 BLUE = (.10, .36, .82)
 ORANGE = (.99, .45, .09)
@@ -61,8 +63,8 @@ OUTER = part("blue_tray", (CENTER_X, 0., TOP + .00015), OUTER_BOXES, .24, fricti
 INNER = part("orange_tray", (CENTER_X, 0., TOP + .0033), INNER_BOXES, .17, friction=.42)
 OBJECTS = [
     OUTER, INNER,
-    Box("left_pad", pos=(PAD_X, PAD_Y, TOP + PAD_H / 2), size=(*PAD_SIZE, PAD_H), color=PAD_COLOR),
-    Box("right_pad", pos=(PAD_X, -PAD_Y, TOP + PAD_H / 2), size=(*PAD_SIZE, PAD_H), color=PAD_COLOR),
+    Box("left_pad", pos=(PAD_X, PAD_Y, TOP + PAD_H / 2), size=(*LEFT_PAD_SIZE, PAD_H), color=PAD_COLOR),
+    Box("right_pad", pos=(PAD_X, RIGHT_PAD_Y, TOP + PAD_H / 2), size=(*RIGHT_PAD_SIZE, PAD_H), color=PAD_COLOR),
 ]
 
 SIGNS = np.array([[x, y, z] for x in (-1, 1) for y in (-1, 1) for z in (-1, 1)])
@@ -131,10 +133,11 @@ def measure(objects, hands=None):
     )
     upright = all(rot[2, 2] >= math.cos(math.radians(10)) for rot in poses[1::2])
     on_pads = []
-    for i, (lo, hi) in enumerate(bounds):
-        pad = np.array([PAD_X, (-1 if i == 0 else 1) * PAD_Y])
+    pads = [(RIGHT_PAD_Y, RIGHT_PAD_SIZE), (PAD_Y, LEFT_PAD_SIZE)]
+    for (lo, hi), (y, size) in zip(bounds, pads):
+        pad = np.array([PAD_X, y])
         on_pads.append(
-            bool(np.all(lo[:2] >= pad - PAD_SIZE / 2) and np.all(hi[:2] <= pad + PAD_SIZE / 2)
+            bool(np.all(lo[:2] >= pad - size / 2) and np.all(hi[:2] <= pad + size / 2)
                  and abs(lo[2] - (TOP + PAD_H)) <= .002)
         )
     hands = hand_boxes() if hands is None else hands

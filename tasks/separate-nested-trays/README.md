@@ -12,7 +12,7 @@ Use the calibrated bimanual YAM station. Positions are in metres from the midpoi
 | --- | --- | --- |
 | Blue lower tray | PETG, 220 × 150 × 45 mm shell with 3 mm walls and floor. Two 4 × 9 × 5 mm inward yellow ledges, plus a 24 × 16 × 47 mm grip on the exterior right. Simulated mass 240 g. | Upright at x = 0.265 m, y = 0, bottom on table. |
 | Orange upper tray | PETG, 180 × 120 × 35 mm shell with 3 mm walls and floor. Two 4 × 11 × 4 mm tabs extend outside the long walls. Its 24 × 11 × 42 mm grip rises off the left wall and carries a 24 × 51 × 14 mm inward grip extension. Simulated mass 170 g. | Upright on the blue floor with the same x/y center and two tabs under the corresponding ledges. |
-| Two green staging pads | 254 × 203 × 3 mm flat mats, secured to the table. | Left (0.265, 0.211), right (0.265, −0.211). |
+| Two green staging pads | 3 mm flat mats, secured. Left 254 × 203 mm, right 284 × 233 mm. | Left (0.265, 0.211), right (0.265, −0.226). |
 
 Print the trays from `trays.scad` by choosing `part="outer"` or `part="inner"`. Print with supports under the overhanging ledges and tabs. Center marks on the long rims can be applied in yellow paint. For reset, place the lower tray on its center mark, lower the upper tray with its tabs alongside the ledges and shift it until the marks coincide. Keep both pads clear. See `reset.json` for all collider bounds and canonical poses. No consumables or object jitter.
 
