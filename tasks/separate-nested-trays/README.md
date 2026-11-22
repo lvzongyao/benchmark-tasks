@@ -2,7 +2,7 @@
 
 Separate the nested trays and place the orange tray upright on the left pad and the blue tray upright on the right pad. At the reset pose, two tabs on the top tray lie under two small ledges on the bottom tray. The ledges are 4 mm long along the slide axis. An 8 mm nominal shift gives clearance when the tray is square. The pair can be held in one place while the upper tray shifts along its long axis until the overlap clears, then separated vertically. The trays start loose and have no joints to each other or to the table.
 
-Industrial tray denesting supplies individual containers to packaging stations. For a documented example of manual denesting and its automation, see [fruit packaging tray denesting](https://patents.google.com/patent/US5876180A/en). The reusable printed trays in this scene reproduce the hold-and-release problem with two visible lips. This particular 8 mm lip design is a prototype.
+Industrial tray denesting feeds individual containers to packaging stations. Unseparated trays can interrupt a line. Ishida rates its dedicated denester at up to 120 trays per minute, which illustrates the throughput at stake. This task isolates the two-handed recovery on a reusable tray pair with physical lips. The exact 8 mm release mechanism is a simulation-tested prototype awaiting a printed fit check. [Ishida Tray Denester](https://www.ishida.com/ww/en/products/documents/upload/Tray-Denester-Brochure-ENG.pdf)
 
 ## Setup and reset
 
@@ -31,6 +31,8 @@ inspect-robots run --embodiment yam_arena --policy yam_scripted \
 The scripted demo parks the right arm at its ready pose for the first five seconds while the left arm grips the orange tray. The right arm then grips the outward handle to counterhold the blue tray while the left arm slides and lifts the orange tray. Set `TRAY_ARM_CONTACTS` to a fresh JSON Lines output path to record cross-arm contact pairs at each 240 Hz physics step, including the link names and contact separation. Set `TRAY_DIAGNOSTICS` to a fresh output path for the per-control-step poses, gaps, partial-credit predicates, dwell, score, and contact totals.
 
 The local reference runs used Isaac Sim 6.1, Isaac Lab Arena release/0.3.1, Inspect Robots 1.0.0, and an RTX 5090. Both seed-zero resets reached 1.00 in 578 control steps (28.9 simulated seconds) with zero cross-arm contacts. Recording both took 200 seconds of wall time including simulator startup. Use `--policy dream` for the model trial with the same scene, instruction, and limit. To record a shortcut trial, run the scripted command with `TRAY_DEMO=straight`, `TRAY_DEMO=together`, or `TRAY_DEMO=one_pad`. Run `python -m unittest test_scoring.py` for the offline checks and `python validate.py results.json` for the same-process repeated-reset and shortcut controls.
+
+The recorded Dream-1 trial scored 0.00 at the 1,200-step limit. The trays remained nested. The trial and recording took 171 seconds of wall time including startup. The straight-pull, lift-together and one-pad controls scored 0.00, 0.25 and 0.75 respectively. The lift-together control shifted the tabs clear of the ledges and left the trays nested.
 
 The score is read at the end. A tray more than 50 mm below the bench or a tab penetrating a ledge more than 2.5 mm on all box separating axes invalidates the trial. Ordinary contact within the solver tolerance is allowed. Otherwise, use the highest qualifying score:
 
