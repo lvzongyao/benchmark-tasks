@@ -1,0 +1,19 @@
+{
+  "title": "Push out a recessed sleeve",
+  "category": "Other",
+  "keywords": [
+    "bimanual",
+    "maintenance",
+    "sleeve",
+    "push-out"
+  ],
+  "instruction": "Push the recessed sleeve out of the plate into the catch tray using the blunt rod, then park the rod.",
+  "context": "Maintenance technicians often apply axial force to remove seated components that cannot be gripped directly. This bench prototype isolates aligning a tool with an annular part, counterholding its housing, capturing the released part, and clearing the bore.",
+  "setup": "A free 120 x 90 x 20 mm blue PETG plate stands upright with its 24 mm through-bore centered at (0.315, -0.143, 0.7925) m along +x. Printed PETG sleeve, 16 mm long, 23.8 mm OD and 10 mm ID, centered 2 mm inside each face. The red 100 x 14 mm flat-ended PETG push rod starts at (0.180, -0.143, 0.7585) m with axis +x, on a green rod rest. An empty 122 x 83 mm open-entry catch tray has its floor centered at (0.391, -0.143) m behind the bore. The plate has two printed feet, each 20 x 18 x 5 mm. The lips on the two side guides sit 1 mm above the feet to limit tipping. The guides are open at both ends along the push axis. See README and task.py for grasp and fixture dimensions.",
+  "scoring": "Final state. Zero if the sleeve is lost below the bench. Award 0.25 at 4 mm axial travel relative to the plate, 0.50 at 10 mm travel with at least 8 mm projecting beyond the rear face, and 0.75 for complete exit and containment by the catch tray. Award 1.0 when the sleeve is in the tray, the removed rod is parked on its rest, the bore is clear, and the workpiece, sleeve and rod remain settled with jaws clear for 20 control steps.",
+  "run_limit": "1,800 steps (90 simulated seconds at 20 Hz)",
+  "reset_notes": "Stand the plate between the side guides. Insert the sleeve with 2 mm recess on each face. Return the rod to its rest with the blunt tip toward the bore. Empty the catch tray.",
+  "fidelity": "The plate bore and sleeve are open, with independent rigid bodies and convex radial collider pieces. The sleeve exits under rod contact and gravity. Mass and friction are estimated for a printed prototype. The simulation uses a low-force slip fit, without modeling a metal press fit, impact, or material damage.",
+  "scores": "Dream-1 run: 0.0; demo: 1.0",
+  "media": "M-VQ4SVU"
+}
