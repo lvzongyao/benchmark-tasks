@@ -1,0 +1,19 @@
+{
+  "title": "Join two hinge leaves with a pivot pin",
+  "category": "Other",
+  "keywords": [
+    "bimanual",
+    "hinge assembly",
+    "pin insertion",
+    "relative rotation"
+  ],
+  "instruction": "Join the flap to the base with the pivot pin and show that the flap can turn while remaining attached.",
+  "context": "Joining hinge leaves requires aligning a mobile eye with the base ears, threading the pivot through all three, and checking that the finished joint actually turns.",
+  "setup": "Three separate PETG parts sit on the YAM tabletop. The base has a 130 x 99 mm foot and two 10 mm-thick ears separated by a 35 mm gap. The hinge axis is +y at (0.270, -0.058, 0.8115) m. The flap has an 80 x 60 mm leaf and a 26 mm central eye. The near ear and flap have 11.6 mm bores. The far ear has a 12.6 mm relief bore. All three have open chamfered mouths. The separate pin has a 10 mm diameter, a 65 mm shaft and a 25 mm-wide handle. Its tip points +y from the right-hand rest. The flap starts flat on the left-hand stand. Fixture positions and dimensions are in task.py.",
+  "scoring": "0.25 at 5 mm of entry into the first ear with the flap within 3 mm of the common axis. 0.50 once the pin traverses the first ear and the full flap eye. 0.75 once the pin protrudes at least 3 mm beyond the far ear while the flap remains captured. 1.0 after at least 15 degrees of relative flap rotation during continuous capture, with the flap resting on its stop and both jaws clear for 20 consecutive steps. A pin that bypasses the flap scores zero.",
+  "run_limit": "2,400 steps (120 simulated seconds at 20 Hz)",
+  "reset_notes": "Withdraw the pin and separate the flap and base. Park the flap flat on its left stand, place the pin on its right rest with the tip pointing +y, and square the base with the hinge center mark.",
+  "fidelity": "Three open chamfered bores are modeled with rigid compound collision sectors. The base, flap and pin remain free bodies. Friction and masses are estimated for a printable prototype. Physical fit and rated loads are unverified.",
+  "scores": "Dream-1 run interrupted after 668 steps by session expiration and repeated DreamProtocolError responses; last observed task score 0.0; demo: 1.0",
+  "media": "M-NSTNHS"
+}
