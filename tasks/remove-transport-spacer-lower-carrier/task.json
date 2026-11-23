@@ -1,0 +1,19 @@
+{
+  "title": "Remove a transport spacer and lower a carrier",
+  "category": "Other",
+  "keywords": [
+    "bimanual",
+    "spring",
+    "transport-spacer",
+    "controlled-descent"
+  ],
+  "instruction": "Remove the shipping block while supporting the carrier, then lower the carrier gently onto its stop.",
+  "context": "Step 5 of Schwinn’s 490 elliptical assembly manual specifies lifting the frame slightly at the designated inside pivot, pulling out the shipping block and lowering the frame gently. The bench fixture reproduces the transfer of support from the shipping spacer through the operator to the stop. Removing the spacer before taking the load allows the moving assembly to fall.",
+  "setup": "A 140 × 100 mm PETG base with a fixed lower contact stop sits at station x=277, y=0 mm. A 100 × 70 mm, 115 g carrier is vertically guided through 40 mm of nominal travel. A 35 mm-high, 73 g shipping spacer with a broad external handle supports the carrier at reset. The empty 104 × 175 mm recovery tray sits at x=397, y=-216 mm.",
+  "scoring": "0.25 for withdrawing at least 10 mm while the carrier is within 3 mm of its upper reference. 0.50 for a fully clear spacer resting in its tray. 0.75 when the carrier also reaches within 3 mm of its lower reference. 1.00 for one second of stable lower-stop support with both jaws clear by 10 mm. All credit is revoked if downward speed exceeds 0.10 m/s or if carrier height above the lower stop is below 32 mm while spacer travel is at least 10 mm and less than 70 mm.",
+  "run_limit": "2,400 steps at 20 Hz",
+  "reset_notes": "Raise the carrier and replace the same spacer under it. Confirm the carrier settles at the red upper reference, with the empty tray restored to its mark.",
+  "fidelity": "The benchtop fixture uses a mounted base and a passive native prismatic joint in place of the elliptical's pivoting frame. A spring adds load to the carrier's weight. The spacer and lower stop support the carrier through contact. Nominal spring rate is 22 N/m, with 16 mm preload equivalent, for 0.35–1.23 N over the permitted travel. Physical spring rate and prototype speed threshold are unmeasured.",
+  "scores": "Dream-1 run: 0 in 2,400 steps (seed 0). Scripted demo: 1.0 in 519 steps (seed 0).",
+  "media": "M-BTF8Q3"
+}
