@@ -1,0 +1,20 @@
+{
+  "title": "Disconnect a plug with a secondary lock",
+  "category": "Other",
+  "keywords": [
+    "connector",
+    "secondary lock",
+    "spring latch",
+    "bimanual",
+    "maintenance"
+  ],
+  "instruction": "Release both connector locks and separate the plug from the socket without breaking either part.",
+  "context": "On industrial and commercial vehicle harnesses fitted with the TE AMPSEAL 16 key-A 776487-1 plug and 776488-1 inline cap, service technicians retract the connector position assurance slider before holding down the primary latch and pulling the housings straight apart. The CPA prevents accidental unlatching under vibration. TE specifies the two-stage release when servicing damaged or misplaced contacts or replacing the peripheral seal. Pulling before the latch clears loads the retaining shoulder.",
+  "setup": "A coupled, nonpowered PETG plug and teal 46 mm-wide socket start on the center pad. The plug has a red 12 mm-travel safety slider and a yellow spring-loaded compression latch. The safety slider starts closed and blocks the latch. Empty green staging pads lie on opposite sides of the assembly.",
+  "scoring": "0.25 when the secondary slider is withdrawn at least 10 mm. 0.50 when the enabled latch is depressed at least 4 mm and clears the shoulder. 0.75 at 15 mm of withdrawal after legitimate latch clearance. 1.00 when the plug nose is at least 30 mm clear of the socket face, both halves rest on their staging pads, and both grippers stay at least 10 mm clear through one second of stability. 0.00 if the plug bypasses the latch or a part is lost beneath the bench.",
+  "run_limit": "2,400 steps at 20 Hz (120 seconds)",
+  "reset_notes": "Retract the secondary slider and depress the primary latch while recoupling the plug, then release the latch and close the slider.",
+  "fidelity": "Enlarged nonpowered demonstrator. Both slider motions are constrained by PhysX prismatic joints, and the safety tab and primary latch obstruct one another through collision geometry. Electrical behavior, material wear and fracture are outside the scene model.",
+  "scores": "Dream-1 run: 0 in 2,400 steps (seed 0). Scripted demo: 1.0 in 444 steps (seed 0).",
+  "media": "M-BZH6FD"
+}
