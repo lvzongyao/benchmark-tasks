@@ -1,0 +1,18 @@
+{
+  "title": "Exchange a support without changing panel height",
+  "category": "Other",
+  "keywords": [
+    "hinge",
+    "load transfer",
+    "bimanual"
+  ],
+  "instruction": "Replace the temporary support with the permanent foot while keeping the panel at its current height.",
+  "setup": "A 180 × 100 × 8 mm hinged panel rests on a 35 mm-high orange temporary block. A green permanent foot with a matching 35 mm contact height starts separately on the right. Both blocks have molded grips. The bench has a locating recess for the new foot, a tray for the old block and a fixed front-edge height scale.",
+  "scoring": "0.25 for at least 10 mm withdrawal without leaving the marked height band. 0.50 when the old block is clear and staged. 0.75 when the new foot is within 3 mm of recess center and bears the panel. 1.0 when the old block is in the tray, the panel is within 2 mm of reset, and the assembly is stable for one second with hands clear. Video against the height witness must show no drop greater than 3 mm or rise greater than 5 mm during the swap.",
+  "run_limit": "2,400 steps (120 seconds at 20 Hz)",
+  "fidelity": "The panel has a free hinge and the two support blocks are independently mobile. Native contacts carry the panel. The bench surrogate uses a light hinged panel, locating rails and fixed-height blocks. The reference industrial system uses lifting equipment, a shipping skid and threaded leveling feet. The prototype has yet to be physically calibrated.",
+  "scores": "Dream-1 run: 0 in 2,400 steps (seed 0). Scripted demo: 1.0 in 717 steps (seed 0).",
+  "context": "The Instron 5960 Crosshead Method transfers frame weight from a shipping skid to permanent leveling feet while the frame stays supported. This bench fixture tests the same sequence at the free edge of a light hinged panel, with a physical height witness and an independently bearing replacement foot.",
+  "reset_notes": "Place the panel on the temporary support and reference its height with the fixed witness scale. Put the permanent foot and empty tray at the listed reset marks. Use the CAD and reset files included in the task folder.",
+  "media": "M-4FEP92"
+}
