@@ -4,6 +4,9 @@ import numpy as np
 
 ARM_NAMES = ("left", "right")
 SIGNS = np.array([(x, y, z) for x in (-1, 1) for y in (-1, 1) for z in (-1, 1)])
+CPA_CLEAR_M = .0028
+PAD_CLEAR_M = .00155
+HOOK_PASS_M = .0045
 
 
 def vertices(part):
@@ -46,27 +49,28 @@ class Dwell:
         self.poses = self.poses[-20:]
         return len(self.poses)
 
+
 class Unlock:
     """Track clearance while the tooth passes the shoulder."""
+
     def __init__(self):
         self.clear_before = False
         self.escaped = False
         self.invalid = False
 
-    def update(self, travel, depression, withdrawal, aligned):
-        slider_open = travel >= .010
-        tooth_clear = slider_open and depression >= .004
-        if withdrawal <= .001:
-            self.clear_before = False
+    def update(self, travel, depression, withdrawal, aligned, tip_above_shoulders, pad_pressed):
+        slider_open = travel >= CPA_CLEAR_M
+        tooth_clear = slider_open and depression >= PAD_CLEAR_M and tip_above_shoulders and pad_pressed
+        if withdrawal <= .0005:
             self.escaped = False
-        if aligned and .001 < withdrawal <= .012:
-            self.clear_before = tooth_clear
-        if aligned and withdrawal >= .012 and not self.escaped:
+        if withdrawal < HOOK_PASS_M:
+            self.clear_before = aligned and tooth_clear
+        if aligned and withdrawal >= HOOK_PASS_M and not self.escaped:
             if self.clear_before and tooth_clear:
                 self.escaped = True
             else:
                 self.invalid = True
-        if withdrawal >= .020 and not self.escaped:
+        if withdrawal >= .014 and not self.escaped:
             self.invalid = True
         return slider_open, tooth_clear
 

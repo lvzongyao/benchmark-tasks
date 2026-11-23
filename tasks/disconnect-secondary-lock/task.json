@@ -1,20 +1,19 @@
 {
-  "title": "Disconnect a plug with a secondary lock",
-  "category": "Other",
+  "title": "Disconnect an automotive harness connector with a secondary lock",
+  "category": "Impact on jobs",
   "keywords": [
-    "connector",
-    "secondary lock",
-    "spring latch",
-    "bimanual",
-    "maintenance"
+    "automotive electrical service",
+    "wire harness",
+    "connector position assurance",
+    "primary latch"
   ],
-  "instruction": "Release both connector locks and separate the plug from the socket without breaking either part.",
-  "context": "On industrial and commercial vehicle harnesses fitted with the TE AMPSEAL 16 key-A 776487-1 plug and 776488-1 inline cap, service technicians retract the connector position assurance slider before holding down the primary latch and pulling the housings straight apart. The CPA prevents accidental unlatching under vibration. TE specifies the two-stage release when servicing damaged or misplaced contacts or replacing the peripheral seal. Pulling before the latch clears loads the retaining shoulder.",
-  "setup": "A coupled, nonpowered PETG plug and teal 46 mm-wide socket start on the center pad. The plug has a red 12 mm-travel safety slider and a yellow spring-loaded compression latch. The safety slider starts closed and blocks the latch. Empty green staging pads lie on opposite sides of the assembly.",
-  "scoring": "0.25 when the secondary slider is withdrawn at least 10 mm. 0.50 when the enabled latch is depressed at least 4 mm and clears the shoulder. 0.75 at 15 mm of withdrawal after legitimate latch clearance. 1.00 when the plug nose is at least 30 mm clear of the socket face, both halves rest on their staging pads, and both grippers stay at least 10 mm clear through one second of stability. 0.00 if the plug bypasses the latch or a part is lost beneath the bench.",
+  "instruction": "Slide the red secondary lock toward the wires. Hold down the rear latch while pulling the plug straight out of the mounted cap. Set the plug down with its leads attached.",
+  "context": "Automotive and truck technicians uncouple sealed harness connectors during diagnosis and replacement of terminals, seals, sensors and wiring branches. Electrical connector and harness inspection and repair are part of ASE's A6 automobile electrical and T2/T6 truck service task lists. This task uses the mechanical release procedure TE specifies for its AMPSEAL 16 family. BLS counted 825,800 automotive service technicians and mechanics and 316,000 diesel service technicians and mechanics in the United States in 2025. The README identifies the occupational data and manufacturer procedure.",
+  "setup": "A fully mated TE AMPSEAL 16 key-A 776487-1 plug and 1717674-1 reverse-bracket cap start with the stock red CPA fully engaged and primary latch closed. A stock TE 1924487-2 anti-rotation clip fixes the cap to a rigid block, like a chassis breakout. Both halves have four connected, routed leads. A short 90° service pick is staged next to the mounted connection. The README gives the exact parts, bench layout, terminal assembly and reset.",
+  "scoring": "0.25 for retracting the red CPA into the open position. 0.50 for applying pressure to the native rear pad and clearing both latch tips above the cap shoulders. 0.75 for at least 15 mm of straight plug withdrawal after holding latch clearance past the shoulders. 1.00 when the plug is more than 30 mm clear of the stationary cap mouth, placed stably on its prescribed rest with its leads attached, and both arms have withdrawn for one second. Bypassing the latch or losing the plug below the table invalidates the trial.",
   "run_limit": "2,400 steps at 20 Hz (120 seconds)",
-  "reset_notes": "Retract the secondary slider and depress the primary latch while recoupling the plug, then release the latch and close the slider.",
-  "fidelity": "Enlarged nonpowered demonstrator. Both slider motions are constrained by PhysX prismatic joints, and the safety tab and primary latch obstruct one another through collision geometry. Electrical behavior, material wear and fracture are outside the scene model.",
-  "scores": "Dream-1 run: 0 in 2,400 steps (seed 0). Scripted demo: 1.0 in 444 steps (seed 0).",
-  "media": "M-BZH6FD"
+  "reset_notes": "Start with the reverse-mount cap fixed in its stock anti-rotation clip. Align the keyed housings, mate them until the stock latch engages, and return the CPA to its fully forward stop. Restore both slack wire bows with the far ends fixed in their clips. Leave the actuators facing up and the service pick on its rest.",
+  "fidelity": "Manufacturer customer drawings anchor housing size and native rear CPA, latch pad, shoulder and bracket features. Contact-bearing compound shapes approximate the housings, including the spring-loaded latch and CPA detent. The cap is fixed at the clip rail in simulation. Articulated bundles reproduce four visible leads and the distal routing clips. The loose service pick is a dimensioned proxy for a narrow hand tool. Latch force, wire stiffness and fit have not been measured on a physical sample.",
+  "scores": "Dream-1 run: 0 in 2,400 steps (seed 0). Scripted demo: 1.0 in 837 steps (seed 0).",
+  "media": "M-7QHAPH"
 }
