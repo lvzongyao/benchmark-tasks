@@ -1,0 +1,19 @@
+{
+  "title": "Slide a loaded tray into a shipping sleeve",
+  "category": "Other",
+  "keywords": [
+    "bimanual",
+    "packaging",
+    "insertion",
+    "payload-retention"
+  ],
+  "instruction": "Slide the loaded tray all the way into its outer sleeve without spilling the product. Set the closed package down between the arms, about 34 cm forward from the line through their bases, and let go.",
+  "context": "Hand-pack an earbud kit in a drawer carton. Eastface uses fitted inner trays and outer sleeves for earbuds and charging accessories. During closure a skewed tray can bind so the kit still protrudes when picked up for overpacking. A closed rear end stops the tray at the flush position and keeps it from sliding out the far end. This reusable test kit reproduces that packing step.",
+  "setup": "Use a stock YAM station and its wood tabletop. At reset the PETG tray (210 × 120 × 45 mm, 100 g) sits at station x=210, y=181 mm with a 100 × 60 × 30 mm, 65 g earbud-kit surrogate centered on its floor. The separate PETG sleeve (220 × 130 × 55 mm, 150 g) sits at x=210, y=-135 mm, mouth facing +y. Both have an external grasp tab. The tray and sleeve axes are parallel and all three bodies are free. The target is the tabletop near x=340, y=0 mm.",
+  "scoring": "0.25 at 30 mm insertion, 0.50 at 105 mm insertion, 0.75 with a front gap at most 3 mm and absolute relative yaw at most 4°. Every tier requires the product to be inside the walls and below the tray rim, within a 1 mm tolerance. For 1.00 place the package within 35 mm of the target and keep it stable for one second after both jaws clear by 10 mm.",
+  "run_limit": "1,800 steps at 20 Hz",
+  "reset_notes": "Withdraw the tray, center the same block inside it, and restore both bodies to the reset marks.",
+  "fidelity": "Reusable rigid PETG prototype. The closed rear wall, floor, side walls and transparent collision roof leave just the front entrance available. Nominal clearance is 2 mm on either side and above the tray. The rigid pull-tab substitute, external sleeve grasp tab, 10–14 mm entrance chamfers, thin-film window mass and loose earbud-kit surrogate are approximations. Physical print fit and sliding forces remain unmeasured.",
+  "scores": "Dream-1 run: 0 in 1,800 steps (seed 0). Scripted demo: 1.0 in 492 steps (seed 0).",
+  "media": "M-C565JV"
+}
