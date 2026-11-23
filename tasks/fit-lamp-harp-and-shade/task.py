@@ -1,4 +1,4 @@
-"""Assemble an unpowered table lamp with a squeeze-in harp and screw-on finial."""
+"""Install a table-lamp harp and seat its shade before fitting the finial."""
 
 import json
 import math
@@ -13,7 +13,7 @@ from arm_contacts import ArmContacts
 from compound import Link, Part, env, on_reset, on_step
 import geometry as geo
 from pose import as_waypoint_rotation, install_expert, ready_pose
-from scoring import Assembly, LegGauge
+from scoring import Assembly, LegGauge, base_supported
 from yam_arena import ik, station
 from yam_arena.constants import ARM_JOINTS, FINGER_JOINTS
 from yam_arena.demo import FINGER_CLOSED, FINGER_OPEN, Waypoint, grip_rotation
@@ -25,7 +25,9 @@ SCORE_OVER = "end"
 SUCCESS_HOLD_S = .05
 INSTRUCTION = "Fit the harp into the lamp, lower both retaining sleeves, and seat the shade on the harp."
 TOP = TABLE_TOP[SCENE]
-LAMP = np.array([.302,0.,TOP+.105])
+BASE_RADIUS = .071
+BASE_BOTTOM_OFFSET = .105
+LAMP = np.array([.302,0.,TOP+BASE_BOTTOM_OFFSET])
 REST = np.array([.157,0.,TOP+.009])
 SHADE = np.array([.365,.183,TOP])
 FINIAL = np.array([.315,-.159,TOP])
@@ -44,7 +46,7 @@ def mobile(name, pos, size, mass, color, **shapes):
 
 lamp = mobile("table_lamp",LAMP,(.142,.142,.186),1.35,geo.BRASS,friction=.72,
               boxes=geo.saddle_boxes(),wedges=geo.saddle_entrances()+geo.ring(.012,.017,.004,.031,20),
-              cylinders=(((0.,0.,-.096),.071,.018,"Z",geo.DARK),
+              cylinders=(((0.,0.,-.096),BASE_RADIUS,.018,"Z",geo.DARK),
                          ((0.,0.,-.066),.030,.044,"Z",geo.DARK),
                          ((0.,0.,-.030),.011,.036,"Z",geo.BRASS),
                          ((0.,0.,.004),.017,.012,"Z",geo.DARK)))
@@ -193,9 +195,9 @@ def score(objects):
         clear = all(np.maximum(lower-hi,lo-upper).max() > .008 for lo,hi in jaw_boxes(hands))
         release = clear and all(np.linalg.norm(part.lin_vel) < .004
                                 and np.linalg.norm(part.ang_vel) < .12
-                                for part in (loop,cover))
-    valid = bool(np.linalg.norm(fixture.pos-LAMP) < .006 and fixture.rotation()[2,2] > .998
-                 and all(part.pos[2] > TOP-.020 for part in (loop,cover)))
+                                for part in (fixture,loop,cover))
+    valid = base_supported(fixture.pos,fixture.rotation()[2,2],station.TABLE_CENTER,
+                           station.TABLE_SIZE,TOP,BASE_RADIUS,BASE_BOTTOM_OFFSET)
     value = assembly.update(step,notches,sleeves and independent,shade_seated,release,valid)
     if path:
         commanded = commanded_hands()
