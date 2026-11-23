@@ -1,0 +1,18 @@
+{
+  "title": "Check a front brake pad’s remaining lining",
+  "category": "Societal relatability",
+  "keywords": [
+    "brake-pad lining",
+    "automotive service",
+    "thickness gauge",
+    "go-no-go"
+  ],
+  "instruction": "Check the brake pad lining with both gauges, then return them to their rests.",
+  "context": "Toyota Tech Tip T-TT-0132-11 says to check the friction lining when inspecting disc brakes because worn pads can damage the disc. The check uses two sizes from the Lisle 81850 service kit to find an interval for the remaining lining on a removed Camry ACV40 front pad. The vehicle-specific replacement limit is a separate service decision.",
+  "setup": "A Camry ACV40 front rotor based on Brembo 09.A417.11 lies flat. A single front pad based on Brembo P83117N rests lining-down on the annular face, with its 8.4 mm reconstructed lining lifting the exposed steel backing ear away from the disc. The separate green Lisle 81920 and 81930 gauges, marked 8MM and 10MM, start nose-forward in the right-side rests.",
+  "scoring": "0.25 for native disc contact by the inserted 8 mm probe, 0.50 when that probe also physically contacts the underside of the exposed backing ear, 0.75 after the 10 mm probe makes a native blocking contact against the front of the backing while resting on the disc, and 1.00 once both tools are released in their rests for 20 stable controls. The pad lining rests on the disc during the check and after retreat.",
+  "run_limit": "1,800 controls at 20 Hz",
+  "fidelity": "The scene reconstructs published Camry pad and rotor envelopes and Lisle gauge tip dimensions. Gauge handle dimensions and offset are estimated from photographs. Rigid contact between the disc face, friction lining and pad backing preserves the measurement distance. The removed bench assembly uses a nominal specimen, with no physical verification of its wear, backing shape or tool flex.",
+  "scores": "Dream-1 run: 0 in 1,800 steps (seed 0). Scripted demo: 1.0 in 767 steps (seed 0).",
+  "media": "M-MBTTU9"
+}

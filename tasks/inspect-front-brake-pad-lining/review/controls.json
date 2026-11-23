@@ -1,0 +1,43 @@
+{
+  "cli_seed": 0,
+  "cases": {
+    "narrow": {
+      "lining_mm": 6.6,
+      "score": 0.0,
+      "steps": 848,
+      "wall_seconds": 185.48,
+      "witness": {
+        "small_rotor": false,
+        "small_underneath": false,
+        "large_stop": true
+      },
+      "parked": true,
+      "critical_tool_mm": 8,
+      "measured_steps": [
+        169,
+        273
+      ],
+      "max_backing_front_contact_n": 2.6931,
+      "max_leading_edge_travel_mm": 0.0335
+    },
+    "wide": {
+      "lining_mm": 11.4,
+      "score": 0.25,
+      "steps": 848,
+      "wall_seconds": 183.97,
+      "witness": {
+        "small_rotor": true,
+        "small_underneath": false,
+        "large_stop": false
+      },
+      "parked": true,
+      "critical_tool_mm": 10,
+      "measured_steps": [
+        592,
+        624
+      ],
+      "max_backing_front_contact_n": 0.0,
+      "max_leading_edge_travel_mm": 1.742
+    }
+  }
+}

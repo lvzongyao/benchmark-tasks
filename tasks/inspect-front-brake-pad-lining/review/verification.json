@@ -1,0 +1,40 @@
+{
+  "run": "lining-fit-03",
+  "episode_seed": 1415158438,
+  "cli_seed": 0,
+  "status": "success",
+  "score": 1.0,
+  "steps": 767,
+  "wall_seconds": 170.95,
+  "simulated_seconds": 38.35,
+  "camera_resolution": [
+    320,
+    176
+  ],
+  "tool_8_disc": {
+    "step": 180,
+    "physical_contact_n": 0.2458,
+    "insertion_mm": 9.361
+  },
+  "tool_8_backing": {
+    "step": 220,
+    "physical_contact_n": 0.4379,
+    "insertion_mm": 12.027
+  },
+  "tool_10_stop": {
+    "step": 593,
+    "rotor_contact_n": 0.1636,
+    "backing_front_contact_n": 0.5,
+    "edge_travel_mm": -0.033
+  },
+  "max_pad_drift_mm": 0.0006,
+  "max_rotor_drift_mm": 0.0001,
+  "max_pad_angle_degrees": 0.0004,
+  "arm_arm_contacts": 0,
+  "parked": true,
+  "tool_parking_rotation_degrees": [
+    0.172,
+    1.93
+  ],
+  "parking_dwell_steps": 20
+}
