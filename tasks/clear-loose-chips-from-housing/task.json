@@ -1,0 +1,19 @@
+{
+  "title": "Clear loose chips from a housing pocket",
+  "keywords": [
+    "loose debris",
+    "physical collection",
+    "tilting",
+    "rework"
+  ],
+  "instruction": "Remove all loose packing chips from the housing and collect them in the cup.",
+  "context": "In pre-closeout inspection, loose pieces of protective packing left in an assembly are a foreign-object defect. The robot empties a removable test-equipment housing and collects each piece so an observer can account for it before closeout. The task uses coarse packing fragments and an accessible opening.",
+  "setup": "A blue 90 × 140 mm rigid housing with an integral pickup boss, a 5 mm floor, three retaining walls, a shallow rib and a flush discharge edge toward +y. Place ten 6 × 6 × 4 mm rigid plastic pieces on the floor in five pairs. Set the receiving cup on the discharge side and leave the optional blunt sweeping tool on its parking pad. The README and printable parts define the prototype and fixed coordinates.",
+  "scoring": "0.25, 0.50, and 0.75 for at least three, five, and eight chips currently settled inside the cup. 1.0 when all ten are collected, the housing and cup rest at tabletop height, the tool is parked, and the jaws are clear for 20 stable samples. A chip that falls off the table invalidates the trial.",
+  "run_limit": "1,800 steps (90 simulated seconds at 20 Hz)",
+  "reset_notes": "Empty the cup and return all ten chips to their five paired positions in the housing. Reset the housing, cup, and tool to task.py coordinates.",
+  "fidelity": "The housing, pickup boss and flush edge form a purpose-built reproducible surrogate. Each packing piece is an independent rigid body. Physical tilting routes pieces into a collision-defined cup. The model represents loose coarse packing fragments and an accessible pocket. Native machining swarf, bristle-scale cleaning and adhered contaminants are outside the model.",
+  "category": "Other",
+  "scores": "Dream-1 run: 0 in 1,800 steps (seed 0). Scripted demo: 1.0 in 409 steps (seed 0).",
+  "media": "M-LU3BQQ"
+}
