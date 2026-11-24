@@ -1,48 +1,48 @@
-# Check a front brake pad’s remaining lining
+# Check an installed front brake pad through the wheel
 
-Check the brake pad lining with both gauges, then return them to their rests.
+Measure the outer brake pad through the wheel, return both gauges, and mark the measured thickness range on the inspection card.
 
-## Reference operation
+## Work performed
 
-Toyota Tech Tip T-TT-0132-11 specifies checking the friction lining with a ruler or pad thickness gauge before judging replacement against the vehicle-specific service limit. Worn pads can damage the disc. The bench task reports a thickness interval for one removed specimen. [Toyota Tech Tip, p. 1](https://static.nhtsa.gov/odi/tsbs/2014/SB-10060762-2280.pdf)
+Automotive service technicians check friction lining thickness during disc brake inspection. Toyota's service tip specifies a ruler or pad thickness gauge on the friction lining. Brake inspection and work on pads and retaining hardware are part of ASE's A5 Brakes task list. The U.S. Bureau of Labor Statistics counted 825,800 automotive service technician and mechanic jobs in 2025 across all duties. The task exercises the constrained inspection motion through a mounted wheel. It measures a thickness interval using two stock gauge heads and records the interval on a bench inspection card. The vehicle's service limit remains a separate service decision. [Toyota Tech Tip T-TT-0132-11](https://static.nhtsa.gov/odi/tsbs/2014/SB-10060762-2280.pdf) · [ASE A5, Disc Brake Diagnosis and Repair](https://www.ase.com/uploads/ASE_Automobile_Study_Guide_2025.pdf#page=28) · [BLS, Automotive Service Technicians and Mechanics](https://www.bls.gov/ooh/Installation-Maintenance-and-Repair/Automotive-service-technicians-and-mechanics.htm)
 
-Brembo lists the P83117N front pad at 158 × 57 mm and the 09.A417.11 front disc at 296 × 28 mm for the Camry ACV40. A lining-down bench reset uses the disc's working face as the reference plane. The steel backing overlaps that plane at the exposed abutment ear. The surfaces are separated by the remaining lining, so backing thickness is excluded. The approach uses the straight-on L-tip measurement documented for the Lisle 81850 set. Use its 8 mm tool 81920 and its 10 mm tool 81930. [Brembo fitment](https://www.bremboparts.com/america/en/catalogue/toyota-camry-saloon-v4-2-4-acv40/000020332-1) · [Lisle 81850 stock gauges](https://www.lislecorp.com/specialty-tools/brakes/combination-brake-lining-thickness-gauge-set) · [Lisle patent, figs. 5A and 8](https://patents.google.com/patent/US9500462B2/en)
+Lisle's patented axle-parallel approach inserts the offset head through a wheel opening, then sets the transverse lip of the offset measuring block between the rotor face and the inside of the backing plate. The caliper and carrier stay installed. [Lisle 81850 kit](https://www.lislecorp.com/specialty-tools/brakes/combination-brake-lining-thickness-gauge-set) · [Lisle US9500462B2, Fig. 7](https://patents.google.com/patent/US9500462B2/en#description)
 
-## Fixed reset
+## Hardware and reset
 
-The tabletop is at z = 0.7475 m. The rotor lies flat, centered at (0.188, 0.045) m. The pad rests lining-down on its annular working face, with its long axis along y. Its origin is (0.291, 0.046, 0.7965) m. The 8 mm and 10 mm gauge tip centers start at (0.328, −0.145, 0.7655) and (0.215, −0.145, 0.7655) m. Both handles sit edge-up in separate slotted rests, noses facing +y. Replace the same pad and tools to repeat the check.
+- Use the right-front corner of a Toyota Camry ACV40 2.4 with the original floating caliper, carrier, both pads, dust shield, hub and wheel mounted in their service positions. A non-operating donor corner secured upright to a bench stand reproduces the same access. Use a Brembo 09.A417.11 ventilated disc (296 mm diameter, 28 mm thickness, 49 mm height) and the P83117N pad set (158 × 57 mm plan envelope, 18 mm stated total thickness when new). Use the hub-compatible Toyota 42611-33750 16-inch seven-spoke wheel with a 215/60R16 tire. Confirm the donor caliper and wheel fit against the VIN. [Brembo Camry fitment](https://www.bremboparts.com/asiapacific/en/catalogue/toyota-camry-saloon-v4-2-4-acv40/000057752-1) · [Toyota caliper and carrier drawing](https://toyota.epc-data.com/camry/acv40/15619/chassis/4705/) · [Toyota seven-spoke wheel](https://toyota.oempartsonline.com/oem-parts/toyota-wheel-alloy-7-spoke-16-inch-4261133750)
+- Qualify one used outboard P83117N pad for the training fixture. Before assembly, measure the friction lining from its working face to the lining-side surface of the steel backing at three adjacent, unchamfered points nearest the accessible end. Use a calibrated brake-pad thickness gauge or depth gauge that excludes the backing plate and shim. Record all three readings and a photo. Select a pad with **8.90–9.10 mm at all three points** and a clear edge, then mark and reuse that exact pad for every reset. Check the remaining gap at the same point after assembly using the two specified heads. The simulation uses a nominal 9.00 mm lining. A physical specimen measurement is pending.
+- Use Lisle 81920 (8 mm) and 81930 (10 mm) acetal gauges. Identify the 8 mm gauge in blue and the 10 mm gauge in orange. On physical tools, place identifying color labels on the handles and keep the measuring faces bare. On the bench both are edge-up in separate rests, tips pointed toward the wheel. Each rigid plastic rest has a flat handle support and a separate stem support with a 7 mm guide slot. Set the hub center 332 mm above the bench and the two measuring-head origins about 153 mm above the bench at reset. See `reset.json` for positions and dimensions.
+- Keep the wheel bolted to the hub and index one opening to expose the leading end of the outboard pad, as shown in the setup image. The inspection point is at the end of the pad between the carrier horn and caliper bridge. The modeled seven-spoke pattern has a gap centered 30° from the caliper radial reference. Leave the cast caliper, its carrier and the wheel in place throughout the trial.
 
-The reconstructed service specimen has 8.4 mm of friction lining. The pad uses the published plan envelope with an estimated backing-ear shape and lining profile. Both green gauges use the published dimensions at their measuring tips. Their approximately 117 mm offset handles and 4 mm molded body thickness are reconstructed from stock photographs. The model includes the lanyard eye and non-colliding molded markings. The annular disc contact and lining-to-backing distance are physical surfaces. No working caliper, wheel, hydraulic parts, dust, heat or braking behavior is modeled. Actual pad wear, body dimensions and acetal flex have not been measured.
+- Place the bench inspection card and yellow marker at their `reset.json` coordinates. The flat 161 × 202 × 6 mm card has four printed positions labeled START, <8 MM, 8–10 MM, and 10+ MM. The marker is a 34 mm diameter, 28 mm tall rigid cylinder. Reset it to START. The middle bracket means at least 8 mm and below 10 mm.
 
-## Scoring and physical witness
+## Score
 
-The 8 mm gauge must insert beside the pad lining and demonstrate actual contact first with the disc and then with the underside of the backing at that same opening. The 10 mm gauge must rest against the disc, contact the front of the backing ear and stop at its edge. Both gauges are withdrawn and parked. A bench operator can reproduce the check with a low oblique view across the rotor face and a side view of the backing ear. The 8 mm tip disappears under the ear and has small vertical play. The 10 mm tip leaves its upper edge exposed against the front of the ear while its bottom contacts the disc. The comparison gives a lining thickness from 8 mm inclusive to below 10 mm. This interval is the fixture's measurement result.
+The 8 mm head passes through the spoke opening and enters the pad-to-disc gap. Touch the rotor reference and the inside of the backing plate with the same measuring head to show the fit. The 10 mm head uses the same opening and rotor reference but stops at the outer edge of the backing plate. The observed result is at least 8 mm and less than 10 mm. For a physical trial, use a light and fixed close-up through the opening to see the 8 mm head below the edge and the 10 mm head stopped outside it. Confirm rotor contact at each reading, verify both gauges are released in their rests, and check that the marker is centered in the measured bracket.
 
-The score is 0.25 after contact with the disc at the 8 mm insertion position, 0.50 for disc and underside contact with that tool, 0.75 after the larger tool produces a genuine stop, and 1.0 after both tools stay parked and the hands clear for 20 consecutive controls. At 8 mm, the measuring head's leading edge extends 7–21 mm past the front edge of the ear. At 10 mm, the leading edge stays within 2 mm of the front edge while both physical contacts hold. Each witness latches after four consecutive contact samples with the tool within 5° of the approach axis. The lining plane at the ear stays within 0.65 mm of the disc face and within 2° of parallel. The recorded measurement survives normal withdrawal. Ordinary pad repositioning is allowed when the lining rests on the disc again for the reading. Before a physical trial, measure the actual lining on a flat section with a ruler or depth gauge from the friction face to the exposed backing and record that reference independently.
+The simulator tracks passage through a physical spoke opening from the outboard side. Four consecutive valid samples establish each contact witness. At .25 the small measuring head contacts the rotor in the gap. At .50 it also reaches the underside of the backing. At .75 the 10 mm head has sustained rotor contact and a radial stop at the backing edge. At 1.0 both tools are back in their rests and the marker has been placed in the 8–10 mm box. The released marker must settle within 8 mm of the box center and 2 mm of its seated height, and the grippers must stay clear for 20 controls. The contact check uses the head's actual position and normals. Spoke, caliper, barrel and stem contacts cannot establish a reading.
 
-## Local validation
+## Simulation scope
 
-Run from the task directory in an activated local YAM simulator environment. This workspace's activation script is shown below. The command generates its own capture from the source checkout.
+The parked donor corner models the cast obstruction, carrier horns, both pads, hub, rotor, wheel barrel, seven spokes and tire as rigid collision solids. The hub assembly is fixed to the stand. The reset uses catalog pad, disc, wheel and tire envelopes. The cast profile, spoke offsets and opening clearances are representative estimates. The simulation represents pad-to-disc running clearance as contact, omits the dust shield and brake actuation, and uses rigid gauges with approximate body profiles. The model colors the gauge bodies for video readability and leaves the nominal measuring geometry unchanged. The marker and card are a bench job aid for recording the interval. This is a measured access and manipulation task for a stationary fixture.
 
-```sh
-source ../../../robocurve-sim/activate.sh
+## Replay
+
+From this directory with the RoboCurve simulator environment active:
+
+```bash
 mkdir -p .local
-OMNI_CRASHREPORTER_ENABLED=0 OMNI_CRASHREPORTER_SKIPOLDDUMPUPLOAD=1 \
-GAUGE_DIAGNOSTICS=.local/lining-trace.jsonl \
-  flock -F /tmp/workcellbench-sim.lock python capture_detail.py run \
+GAUGE_DIAGNOSTICS=.local/installed-trace.jsonl python capture_detail.py run \
   --embodiment yam_arena --policy yam_scripted -E task=task.py \
-  -E control_hz=20 -E object_jitter=0 -E cam_width=320 -E cam_height=176 \
-  --instruction 'Check the brake pad lining with both gauges, then return them to their rests.' \
-  --scorer task_score --seed 0 --max-steps 1800 --store-frames --no-prompt --log-dir .local/lining
+  -E control_hz=20 -E object_jitter=0 -E cam_width=640 -E cam_height=360 \
+  --instruction 'Measure the outer brake pad through the wheel, return both gauges, and mark the measured thickness range on the inspection card.' \
+  --scorer task_score --max-steps 1800 --seed 0 --store-frames --no-prompt --log-dir .local/installed
 python -m unittest test_scoring
 ```
 
-Use `GAUGE_CONTROL_GAP=narrow` for a 6.6 mm lining and `GAUGE_CONTROL_GAP=wide` for an 11.4 mm lining. The same two tools and scripted actions are used in both controls. These specimens are local scorer validation cases.
+For matched contacts at off-band dimensions, set `GAUGE_CONTROL_GAP=narrow` (6.6 mm) or `GAUGE_CONTROL_GAP=wide` (11.4 mm). These are simulator controls with the same installed assembly and approach.
 
-The verified nominal trial scored 1.0 at 767 controls with CLI seed 0 and episode seed 1415158438. It took 38.35 simulated seconds and 170.95 seconds of wall time. The 8 mm head made 0.246 N of rotor contact at 9.36 mm insertion, then 0.438 N of underside contact at 12.03 mm insertion. At the 10 mm stop, the head made 0.164 N of rotor contact and 0.500 N against the front of the backing. I checked pickup, both physical measurements, withdrawal, release and retreat in the encoded overhead and detail streams. Both tools finished supported in their rests.
+## Verified demonstration
 
-In the matched 6.6 mm trial, the 8 mm head hit the backing front at up to 2.69 N and advanced at most 0.034 mm past the entrance while stopped. Both tools returned to their rests. The run scored 0.0.
-
-The 11.4 mm control scored 0.25 at 848 controls. The 8 mm tool touched the disc without reaching the backing's underside. The 10 mm tool's leading edge traveled 1.74 mm past the front edge at the same attempted stop, with zero frontal contact. Both tools finished parked. I checked both control recordings from reset through retreat, including the side view at the backing edge.
-
-The local project archive holds `review/setup.png`, `review/demo.mp4`, `review/detail.mp4`, `review/verification.json`, `review/narrow.mp4`, `review/wide.mp4` and `review/controls.json`.
+The nominal 9.00 mm seed-0 replay scored **1.0 in 1,106 controls**. The blue 8 mm head entered about 1.51 mm beneath the backing plate, while the orange 10 mm head stopped at the edge. The left gripper picked up the yellow marker from START and released it 0.38 mm from the center of the 8–10 mm box. The final close-up shows the result after both arms retreat. The trace recorded zero arm-to-arm or arm-to-wheel assembly contacts. Nine offline checks passed. Replaying the earlier 6.6 mm and 11.4 mm control traces through the new scorer with the marker already set yielded 0.0 and 0.25.

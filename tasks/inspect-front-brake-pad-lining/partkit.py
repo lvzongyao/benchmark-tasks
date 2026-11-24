@@ -21,6 +21,8 @@ class Part(Box):
     wedges: tuple = field(default=(), compare=False, hash=False)
     marks: tuple = ()
     friction: float = .4
+    orientation: tuple = (0., 0., 0., 1.)
+    mounted: bool = False
 
 
 @dataclass(frozen=True)
@@ -44,7 +46,9 @@ def _spawn_part(prim_path, cfg, translation=None, orientation=None, **kwargs):
     root.AddOrientOp(precision=UsdGeom.XformOp.PrecisionDouble).Set(Gf.Quatd(w, x, y, z))
     body_path = f"{prim_path}/body"
     body = UsdGeom.Xform.Define(stage, body_path).GetPrim()
-    UsdPhysics.RigidBodyAPI.Apply(body)
+    rigid = UsdPhysics.RigidBodyAPI.Apply(body)
+    if spec.mounted:
+        rigid.CreateKinematicEnabledAttr(True)
     PhysxSchema.PhysxContactReportAPI.Apply(body).CreateThresholdAttr(0.)
     UsdPhysics.MassAPI.Apply(body).CreateMassAttr(spec.mass)
     rb = PhysxSchema.PhysxRigidBodyAPI.Apply(body)
@@ -124,7 +128,7 @@ def _arena_object(spec):
 
     return Object(name=spec.name, object_type=ObjectType.RIGID,
                   spawner_cfg=PartSpawnerCfg(part_name=spec.name),
-                  initial_pose=Pose(position_xyz=spec.pos, rotation_xyzw=(0., 0., 0., 1.)))
+                  initial_pose=Pose(position_xyz=spec.pos, rotation_xyzw=spec.orientation))
 
 
 def _part_state(environment, spec):

@@ -1,4 +1,4 @@
-"""Record native contact witnesses and award full credit after parking."""
+"""Record native contact witnesses and award full credit after parking and recording the reading."""
 
 
 class Measurement:
@@ -9,7 +9,7 @@ class Measurement:
         self.invalid = False
         self.score = 0.
 
-    def update(self, tick, floor, roof, stop, intact, parked):
+    def update(self, tick, floor, roof, stop, intact, parked, recorded=False):
         if tick == self.last_tick:
             return self.score
         self.last_tick = tick
@@ -21,7 +21,7 @@ class Measurement:
         if self.invalid:
             self.score = 0.
         elif lower and upper and blocked:
-            self.score = 1. if parked else .75
+            self.score = 1. if parked and recorded else .75
         elif lower and upper:
             self.score = .50
         else:
